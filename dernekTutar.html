@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/345f74735d.js" crossorigin="anonymous"></script>
+    <title>Dernek ve Cami Külliyeleri</title>
+    <style>
+          body {
+            overflow-y: hidden;
+        }
+        .logo-container {
+            margin-top: 24px;
+            text-align: start;
+        }
+
+        .logo-container img {
+            width: 100px; /* Resmin genişliği */
+            height: auto; /* Yükseklik otomatik ayarlanacak */
+        }
+
+        @media (max-width: 576px) { /* Küçük ekranlar için özel stillendirme */
+            
+            .logo-container img {
+                width: 70px; /* Mobil cihazlarda resmi daha da küçült */
+            }
+        }
+    </style>
+</head>
+<body style="overflow-y: hidden;">
+    <div class="container-md">
+         <div class="logo-container">
+            <img src="serhendLogo.png" alt="">
+            
+        </div>
+        <h2 class="text-center">Dernek Gelir-Gider Tablosu</h2>
+        <div class="container-sm">
+        
+        <form id="dernekForm">
+            <table class="table table-bordered " style="overflow-y: hidden;">
+                <thead>
+                    <tr>
+                        <th>DERNEKLER <i class="fa-brands fa-ussunnah"></i></th>
+                        <th>BANKA <i class="fa-solid fa-money-check"></i> </th>
+                        <th>KASA <i class="fa-solid fa-user-shield"></i></th>
+                        <th>GİDER <i class="fa-solid fa-money-bill-transfer"></i></th>
+                        <th>MEVCUT TUTAR <i class="fa-solid fa-coins"></i></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background-color: #257894;">
+                        <td>Cami Derneği</td>
+                        <td><input type="number" id="gelir_cami" placeholder="Gelen Tutar TL" onchange="hesapla()"></td>
+                        <td><input type="number" id="kasa_cami" placeholder="Kasa Tutar TL" onchange="hesapla()"></td>
+                        <td><input type="number" id="gider_cami"  placeholder="Gider Tutar TL" onchange="hesapla()"></td>
+                        <td><input type="number" id="toplam_cami"  placeholder="Toplam tutar TL" readonly>₺</td>         
+                    </tr>
+                    <tr  style="background-color:#93bf2b;">
+                        <td>Köy Derneği</td>
+                        <td><input type="number" id="gelir_koy" placeholder="Gelen Tutar TL" onchange="hesapla()"></td>
+                        <td><input type="number" id="kasa_koy"  placeholder="Kasa Tutar TL" onchange="hesapla()"></td>
+                        <td><input type="number" id="gider_koy"  placeholder="Gider Tutar TL" onchange="hesapla()"></td>
+                        <td><input type="number" id="toplam_koy"  placeholder="Toplam tutar TL" readonly>₺</td>         
+                    </tr>
+                    <tr style="background-color: #80c8df;">
+                        <td>Gençlik  Derneği</td>
+                        <td><input type="number" id="gelir_genc" placeholder="Gelen Tutar TL" onchange="hesapla()"></td>
+                        <td><input type="number" id="kasa_genc"  placeholder="Kasa Tutar TL" onchange="hesapla()"></td>
+                        <td><input type="number" id="gider_genc"  placeholder="Gider Tutar TL" onchange="hesapla()"></td>
+                        <td><input type="number" id="toplam_genc"  placeholder="Toplam tutar TL" readonly>₺</td>         
+                    </tr>
+                    <tr style="background-color: #c1e078;">
+                      <td>Külliye  Derneği</td>
+                      <td><input type="number" id="gelir_kulliye" placeholder="Gelen Tutar TL" onchange="hesapla()"></td>
+                      <td><input type="number" id="kasa_kulliye"  placeholder="Kasa Tutar TL" onchange="hesapla()"></td>
+                      <td><input type="number" id="gider_kulliye"  placeholder="Gider Tutar TL" onchange="hesapla()"></td>
+                      <td><input type="number" id="toplam_kulliye" placeholder="Toplam Tutar TL"  readonly>₺</td>         
+                    </tr>
+                    <tr>
+                        <td colspan="4">Toplam Tutar:</td>
+                        <td><input type="number" id="genel_toplam" placeholder="Genel Toplam TL" readonly>₺</td>         
+                      </tr>
+                </tbody>
+            </table>
+        </form>
+     </div>
+    </div>
+
+    <script>
+        function hesapla() {
+            // Cami Derneği
+            var gelir_cami = parseFloat(document.getElementById("gelir_cami").value);
+            var kasa_cami = parseFloat(document.getElementById("kasa_cami").value);
+            var gider_cami = parseFloat(document.getElementById("gider_cami").value);
+
+            var toplam_cami = gelir_cami + kasa_cami - gider_cami;
+            document.getElementById("toplam_cami").value = toplam_cami.toFixed(2);
+
+           //köy derneği
+             var gelir_koy = parseFloat(document.getElementById("gelir_koy").value);
+             var kasa_koy = parseFloat(document.getElementById("kasa_koy").value);
+             var gider_koy = parseFloat(document.getElementById("gider_koy").value);
+
+            var toplam_koy = gelir_koy + kasa_koy - gider_koy;
+            document.getElementById("toplam_koy").value = toplam_koy.toFixed(2);
+
+            //gençlik derneği 
+            var gelir_genc = parseFloat(document.getElementById("gelir_genc").value);
+             var kasa_genc = parseFloat(document.getElementById("kasa_genc").value);
+             var gider_genc = parseFloat(document.getElementById("gider_genc").value);
+
+            var toplam_genc = gelir_genc + kasa_genc - gider_genc;
+            document.getElementById("toplam_genc").value = toplam_genc.toFixed(2);
+
+             //gençlik derneği 
+             var gelir_kulliye = parseFloat(document.getElementById("gelir_kulliye").value);
+             var kasa_kulliye = parseFloat(document.getElementById("kasa_kulliye").value);
+             var gider_kulliye = parseFloat(document.getElementById("gider_kulliye").value);
+
+            var toplam_kulliye = gelir_kulliye + kasa_kulliye - gider_kulliye;
+            document.getElementById("toplam_kulliye").value = toplam_kulliye.toFixed(2);
+
+            var genel_toplam = toplam_cami + toplam_koy + toplam_genc + toplam_kulliye;
+            document.getElementById("genel_toplam").value = genel_toplam.toFixed(2);
+        }
+    </script>
+</body>
+</html>
